@@ -6,7 +6,7 @@ ARG VCS_REF
 LABEL maintainer="Dominic Taylor <dominic@yobasystems.co.uk>" \
     architecture="amd64/x86_64" \
     alpine-version="3.10.0" \
-    build="15-Aug-2019" \
+    build="25-Aug-2019" \
     org.opencontainers.image.title="alpine" \
     org.opencontainers.image.description="Docker image running on Alpine Linux" \
     org.opencontainers.image.authors="Dominic Taylor <dominic@yobasystems.co.uk>" \
@@ -18,4 +18,8 @@ LABEL maintainer="Dominic Taylor <dominic@yobasystems.co.uk>" \
     org.opencontainers.image.created=$BUILD_DATE
 
 ADD alpine-minirootfs-3.10.0-x86_64.tar.gz /
+RUN cd / \
+    && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN cd / \
+    && sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 CMD ["/bin/sh"]
